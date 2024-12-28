@@ -8,7 +8,7 @@ const getHumanChoice = () => {
   let choice = prompt('Rock, Paper or Scissors?').toLowerCase();
   const isChoiceInvalid = !['rock', 'paper', 'scissors'].includes(choice);
 
-  while (choice.length === 0 || isChoiceInvalid) {
+  if (choice.length === 0 || isChoiceInvalid) {
     choice = prompt('Enter a valid choice. Rock, Paper or Scissors?');
   }
 
