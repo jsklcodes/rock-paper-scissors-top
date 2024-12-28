@@ -15,6 +15,22 @@ const getHumanChoice = () => {
   return choice;
 };
 
+const getGameResult = (humanScore, computerScore) => {
+  let resultMessage;
+
+  if (humanScore === computerScore) {
+    resultMessage = 'The game ended in a draw!';
+  } else if (humanScore > computerScore) {
+    resultMessage = "Congratulations! You've won the game!";
+  } else {
+    resultMessage = "Oh, no... You've lost the game!";
+  }
+
+  console.log('Game over!');
+  console.log(resultMessage);
+  console.log(`${humanScore} x ${computerScore}`);
+};
+
 const playGame = () => {
   let humanScore = 0;
   let computerScore = 0;
@@ -43,8 +59,7 @@ const playGame = () => {
     playRound(humanSelection, computerSelection);
   }
 
-  console.log('Game over');
-  console.log(`${humanScore} x ${computerScore}`);
+  getGameResult(humanScore, computerScore);
 };
 
 playGame();
