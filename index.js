@@ -58,19 +58,13 @@ const getHumanChoice = () => {
 };
 
 const getGameResult = (humanScore, computerScore) => {
-  let resultMessage;
-
   if (humanScore === computerScore) {
-    resultMessage = 'The game ended in a draw!';
+    gameText.textContent = 'The game ended in a draw!';
   } else if (humanScore > computerScore) {
-    resultMessage = "Congratulations! You've won the game!";
+    gameText.textContent = "Congratulations! You've won the game!";
   } else {
-    resultMessage = "Oh, no... You've lost the game!";
+    gameText.textContent = "Oh, no... You've lost the game!";
   }
-
-  console.log('Game over!');
-  console.log(resultMessage);
-  console.log(`${humanScore} x ${computerScore}`);
 };
 
 const playRound = (humanChoice, computerChoice) => {
@@ -80,12 +74,12 @@ const playRound = (humanChoice, computerChoice) => {
     (humanChoice === 'scissors' && computerChoice === 'paper');
 
   if (humanChoice === computerChoice) {
-    console.log(`It's a draw! They both played ${humanChoice}.`);
+    gameText.textContent = `It's a draw! They both played ${humanChoice}.`;
   } else if (isHumanRoundWinner) {
     humanScore++;
-    console.log(`You won! ${humanChoice} beats ${computerChoice}.`);
+    gameText.textContent = `You won! ${humanChoice} beats ${computerChoice}.`;
   } else {
     computerScore++;
-    console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+    gameText.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
   }
 };
