@@ -46,17 +46,6 @@ const getComputerChoice = () => {
   return choices[randomIndex];
 };
 
-const getHumanChoice = () => {
-  let choice = prompt('Rock, Paper or Scissors?').toLowerCase();
-  const isChoiceInvalid = !['rock', 'paper', 'scissors'].includes(choice);
-
-  if (choice.length === 0 || isChoiceInvalid) {
-    choice = prompt('Enter a valid choice. Rock, Paper or Scissors?');
-  }
-
-  return choice;
-};
-
 const getGameResult = (humanScore, computerScore) => {
   if (humanScore === computerScore) {
     gameText.textContent = 'The game ended in a draw!';
