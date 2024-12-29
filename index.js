@@ -1,3 +1,22 @@
+const choiceButtons = document.querySelectorAll('[data-choice]');
+const gameText = document.querySelector('#game-text');
+const gameScore = document.querySelector('#game-score');
+
+let humanScore = 0;
+let computerScore = 0;
+let rounds = 0;
+
+choiceButtons.forEach(choiceButton =>
+  choiceButton.addEventListener('click', event => {
+    const humanSelection = event.target.dataset.choice;
+    const computerSelection = getComputerChoice();
+
+    rounds++;
+
+    playRound(humanSelection, computerSelection);
+  })
+);
+
 const getComputerChoice = () => {
   const choices = ['rock', 'paper', 'scissors'];
   const randomIndex = Math.floor(Math.random() * choices.length);
@@ -31,35 +50,19 @@ const getGameResult = (humanScore, computerScore) => {
   console.log(`${humanScore} x ${computerScore}`);
 };
 
-const playGame = () => {
-  let humanScore = 0;
-  let computerScore = 0;
+const playRound = (humanChoice, computerChoice) => {
+  const isHumanRoundWinner =
+    (humanChoice === 'rock' && computerChoice === 'scissors') ||
+    (humanChoice === 'paper' && computerChoice === 'rock') ||
+    (humanChoice === 'scissors' && computerChoice === 'paper');
 
-  const playRound = (humanChoice, computerChoice) => {
-    const isHumanRoundWinner =
-      (humanChoice === 'rock' && computerChoice === 'scissors') ||
-      (humanChoice === 'paper' && computerChoice === 'rock') ||
-      (humanChoice === 'scissors' && computerChoice === 'paper');
-
-    if (humanChoice === computerChoice) {
-      console.log(`It's a draw! They both played ${humanChoice}.`);
-    } else if (isHumanRoundWinner) {
-      humanScore++;
-      console.log(`You won! ${humanChoice} beats ${computerChoice}.`);
-    } else {
-      computerScore++;
-      console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
-    }
-  };
-
-  for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
+  if (humanChoice === computerChoice) {
+    console.log(`It's a draw! They both played ${humanChoice}.`);
+  } else if (isHumanRoundWinner) {
+    humanScore++;
+    console.log(`You won! ${humanChoice} beats ${computerChoice}.`);
+  } else {
+    computerScore++;
+    console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
   }
-
-  getGameResult(humanScore, computerScore);
 };
-
-playGame();
