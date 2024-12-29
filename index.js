@@ -18,9 +18,27 @@ choiceButtons.forEach(choiceButton =>
     if (rounds >= 5) {
       choiceButtons.forEach(choiceButton => (choiceButton.disabled = true));
       getGameResult(humanScore, computerScore);
+      showRestartButton();
     }
   })
 );
+
+const showRestartButton = () => {
+  const restartButton = document.createElement('button');
+  restartButton.textContent = 'Restart Game';
+  restartButton.onclick = restartGame;
+  document.body.insertAdjacentElement('beforeend', restartButton);
+};
+
+const restartGame = event => {
+  humanScore = 0;
+  computerScore = 0;
+  rounds = 0;
+  gameText.textContent = '';
+  gameScore.textContent = '';
+  choiceButtons.forEach(choiceButton => (choiceButton.disabled = false));
+  event.target.remove();
+};
 
 const getComputerChoice = () => {
   const choices = ['rock', 'paper', 'scissors'];
