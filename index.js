@@ -23,6 +23,13 @@ choiceButtons.forEach(choiceButton =>
   })
 );
 
+const capitalizeString = string => {
+  const capitalizedFirstLetter = string[0].toUpperCase();
+  const stringWithoutFistLetter = string.slice(1);
+
+  return capitalizedFirstLetter + stringWithoutFistLetter;
+};
+
 const showRestartButton = () => {
   const restartButton = document.createElement('button');
   restartButton.textContent = 'Restart Game';
@@ -66,15 +73,21 @@ const playRound = (humanChoice, computerChoice) => {
     (humanChoice === 'scissors' && computerChoice === 'paper');
 
   if (humanChoice === computerChoice) {
-    gameText.textContent = `It's a draw! They both played ${humanChoice}.`;
+    gameText.textContent = `It's a draw! They both played ${capitalizeString(
+      humanChoice
+    )}.`;
     getGameScore(humanScore, computerScore);
   } else if (isHumanRoundWinner) {
     humanScore++;
-    gameText.textContent = `You won! ${humanChoice} beats ${computerChoice}.`;
+    gameText.textContent = `You won! ${capitalizeString(
+      humanChoice
+    )} beats ${capitalizeString(computerChoice)}.`;
     getGameScore(humanScore, computerScore);
   } else {
     computerScore++;
-    gameText.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
+    gameText.textContent = `You lose! ${capitalizeString(
+      computerChoice
+    )} beats ${capitalizeString(humanChoice)}.`;
     getGameScore(humanScore, computerScore);
   }
 };
