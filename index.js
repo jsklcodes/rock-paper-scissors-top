@@ -14,6 +14,11 @@ choiceButtons.forEach(choiceButton =>
     rounds++;
 
     playRound(humanSelection, computerSelection);
+
+    if (rounds >= 5) {
+      choiceButtons.forEach(choiceButton => (choiceButton.disabled = true));
+      getGameResult(humanScore, computerScore);
+    }
   })
 );
 
