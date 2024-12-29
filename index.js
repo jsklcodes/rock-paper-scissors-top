@@ -67,6 +67,9 @@ const getGameResult = (humanScore, computerScore) => {
   }
 };
 
+const getGameScore = (humanScore, computerScore) =>
+  (gameScore.textContent = `${humanScore} x ${computerScore}`);
+
 const playRound = (humanChoice, computerChoice) => {
   const isHumanRoundWinner =
     (humanChoice === 'rock' && computerChoice === 'scissors') ||
@@ -75,11 +78,14 @@ const playRound = (humanChoice, computerChoice) => {
 
   if (humanChoice === computerChoice) {
     gameText.textContent = `It's a draw! They both played ${humanChoice}.`;
+    getGameScore(humanScore, computerScore);
   } else if (isHumanRoundWinner) {
     humanScore++;
     gameText.textContent = `You won! ${humanChoice} beats ${computerChoice}.`;
+    getGameScore(humanScore, computerScore);
   } else {
     computerScore++;
     gameText.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
+    getGameScore(humanScore, computerScore);
   }
 };
